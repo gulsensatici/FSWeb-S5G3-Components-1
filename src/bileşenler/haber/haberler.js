@@ -87,8 +87,81 @@ const data = [
     ucuncuParagraf: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+          
+  },
+  {
+    baslik: "Yazılım öğrenebilmek için yapılması gerekenler",
+    tarih:"22 Mart 2023",
+    ilkParagraf: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    ikinciParagraf: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    ucuncuParagraf: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+          
+
   }
+  
 ];
+
+//const app = document.getElementsByClassName("article");
+
+function haberYapici(haberler) {
+  const haberBasliği = document.createElement("div");
+  haberBasliği.setAttribute("class", "article");
+
+const title= document.createElement('h2');
+title.textContent=haberler.baslik;
+haberBasliği.appendChild(title);
+
+  const tarih= document.createElement("p");
+  tarih.setAttribute('class', 'tarih');
+  tarih.textContent=haberler.tarih;
+  haberBasliği.appendChild(tarih);
+
+  const first= document.createElement("p");
+  first.textContent =haberler.ilkParagraf;
+  haberBasliği.appendChild(first);
+
+  const second= document.createElement("p");
+  second.textContent= haberler.ikinciParagraf;
+  haberBasliği.appendChild(second);
+
+  const third= document.createElement("p");
+  third.textContent=haberler.ucuncuParagraf;
+  haberBasliği.appendChild(third);
+ 
+  const buton= document.createElement("span");
+  buton.setAttribute("class","expandButton");
+  buton.textContent= "+";
+  haberBasliği.appendChild(buton);
+  buton.addEventListener("click", (event) => {
+    const haberBasligi = event.currentTarget.parentElement;
+    haberBasligi.classList.toggle("article-open");
+  });
+  //buton.addEventListener("click", (event)=>haberBasliği.classList.toggle("articel-open"));
+return haberBasliği;
+   //document.querySelector(".expandButton").addEventListener('click', function (event){
+
+  }
+  const haberContainer = document.querySelector(".articles");
+  data.map((item) => {
+    haberContainer.appendChild(haberYapici(item));
+  });
+  data.map(haberYapici);
+
+/*app.appendChild(haberBasliği);
+app.appendChild(tarih1);
+app.appendChild(tarih2);
+app.appendChild(tarih3);
+  
+}
 
 /*
   Adım 1: Haber oluşturmak için 'haberYapici' adında bir bileşen(component) oluşturun.
@@ -99,6 +172,9 @@ const data = [
     <h2>{haber başlığı}</h2>
     <p class="tarih">{haber tarihi}</p>
 
+    <p><p>
+    <p><p>
+    <p><p>
     {üç ayrı paragraf elementi}
 
     <span class="expandButton">+</span>

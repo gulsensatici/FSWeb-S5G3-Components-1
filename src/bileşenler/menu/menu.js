@@ -10,6 +10,30 @@ let menuElemanlari = [
   'Diğer'
 ];
 
+function menuYapici(a){
+  const menuBasligi=document.createElement("div");
+  menuBasligi.classList.add("menu");
+
+  const menuSecenekleri=document.createElement("ul");
+  for( let i=0; i<menuElemanlari.length; i++){
+ 
+    const liA= document.createElement("li");
+    liA.textContent= menuElemanlari[i];
+     menuSecenekleri.appendChild(liA);
+  };
+  menuBasligi.appendChild(menuSecenekleri);
+
+  const buton=document.querySelector(".menu-button");
+  buton.addEventListener("click", (event)=> {
+    menuBasligi.classList.toggle("menu--open");
+    
+  });
+ return menuBasligi;
+}
+const header = document.querySelector(".header");
+
+header.appendChild(menuYapici(menuElemanlari));
+
 /*
   Adım 1: Aşağıdaki etiketlee gibi bir menü oluşturmak için 'menuYapici' adlı bir bileşen yazın:
 
